@@ -17,3 +17,4 @@ Excel for Unity
 
 ## Dependency
 * EEPlus
+* .Net 2.0 instead of .Net 2.0 Subset if you want to do excel job runtime
