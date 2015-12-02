@@ -2,8 +2,10 @@
 Excel for Unity
 
 ## Provides
+
 * Excel(.xls/.xlsx) Read/Write
 * Format Excel sheet into custom object (Excel,ExcelTable...)
+
 ## How to use
 ``` c#
         string excelPath = Application.dataPath + "/Test/Test.xlsx";
@@ -16,5 +18,6 @@ Excel for Unity
 ```
 
 ## Dependency
+
 * EEPlus
 * .Net 2.0 instead of .Net 2.0 Subset if you want to do excel job runtime
