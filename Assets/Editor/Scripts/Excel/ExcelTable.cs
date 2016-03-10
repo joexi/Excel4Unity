@@ -40,6 +40,7 @@ public class ExcelTable
             cells[row] = new Dictionary<int, object>();
         }
         cells[row][column] = value;
+        CorrectSize(row, column);
     }
 
     public object GetValue(int row, int column)
@@ -53,6 +54,12 @@ public class ExcelTable
             }
         }
         return null;
+    }
+
+    public void CorrectSize(int row, int column)
+    {
+        NumberOfRows = Mathf.Max(row, NumberOfRows);
+        NumberOfColumns = Mathf.Max(column, NumberOfColumns);
     }
 
     public void ShowLog() {
