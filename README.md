@@ -1,6 +1,11 @@
 # Excel4Unity
 Excel for Unity
 
+### Update 2016-3-10
+* move the scripts and dlls into "Editor" folder to make sure the game can be running in ".Net 2.0 Subset"
+* fix the row number & column number counting bug
+* add example script in MyEditor/test
+
 ## Provides
 
 * Excel(.xls/.xlsx) Read/Write
