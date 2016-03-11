@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 using OfficeOpenXml;
 using System.IO;
-
+using System.Collections.Generic;
 public class MyEditor : Editor
 {
 
@@ -22,4 +22,26 @@ public class MyEditor : Editor
         xls.ShowLog();
         ExcelHelper.SaveExcel(xls, outputPath);
     }
+
+    [MenuItem("MyEditor/LoadXls")] 
+    static void LoadXls()
+    {
+        string path = Application.dataPath + "/Test/Test3.xlsx";
+        Excel xls =  ExcelHelper.LoadExcel(path);
+        xls.ShowLog();
+    }
+
+    [MenuItem("MyEditor/WriteXls")] 
+    static void WriteXls()
+    {
+        Excel xls = new Excel();
+        ExcelTable table = new ExcelTable();
+        table.TableName = "test";
+        string outputPath = Application.dataPath + "/Test/Test2.xlsx";
+        xls.Tables.Add(table);
+        xls.Tables[0].SetValue(1, 1, Random.Range(1000,100000).ToString());
+        xls.ShowLog();
+        ExcelHelper.SaveExcel(xls, outputPath);
+    }
+
 }
