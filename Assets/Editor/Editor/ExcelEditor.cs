@@ -10,7 +10,7 @@ public class ExcelEditor : EditorWindow {
     [MenuItem("MyEditor/ShowXlsEditor")]
     static void ShowWindow()
     {
-        ExcelEditor window = EditorWindow.GetWindowWithRect<ExcelEditor>(new Rect(0, 0, 600, 400));
+        ExcelEditor window = EditorWindow.GetWindowWithRect<ExcelEditor>(new Rect(0, 0, 800, 400));
         window.Show();
 
         string path = Application.dataPath + "/Test/Test3.xlsx";
@@ -27,7 +27,7 @@ public class ExcelEditor : EditorWindow {
         mTable = mExcel.Tables[0];
         mTable.SetCellTypeRow(1, ExcelTableCellType.Label);
         mTable.SetCellTypeRow(2, ExcelTableCellType.Label);
-        mTable.SetCellTypeColumn(2, ExcelTableCellType.Label);
+        mTable.SetCellTypeColumn(1, ExcelTableCellType.Label);
     }
 
     void OnGUI()
