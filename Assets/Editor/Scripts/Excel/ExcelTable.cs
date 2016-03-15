@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
 using OfficeOpenXml;
 
 public class ExcelTable
 {
-    private Dictionary <int, Dictionary<int, object>> cells = new Dictionary<int, Dictionary<int, object>>();
+    private Dictionary <int, Dictionary<int, ExcelTableCell>> cells = new Dictionary<int, Dictionary<int, ExcelTableCell>>();
 
     public string TableName;
     public int NumberOfRows;
     public int NumberOfColumns;
 
+    public Vector2 Position;
 
     public ExcelTable()
     {
@@ -37,20 +37,37 @@ public class ExcelTable
     {
         if (!cells.ContainsKey(row))
         {
-            cells[row] = new Dictionary<int, object>();
+            cells[row] = new Dictionary<int, ExcelTableCell>();
         }
-        cells[row][column] = value;
+        if (cells[row].ContainsKey(column))
+        {
+            cells[row][column].Value = value;
+        }
+        else
+        {
+            ExcelTableCell cell = new ExcelTableCell(row, column, value);
+            cells[row][column] = cell;
+        }
         CorrectSize(row, column);
     }
 
     public object GetValue(int row, int column)
     {
+        ExcelTableCell cell = GetCell(row, column);
+        if (cell != null)
+        {
+            return cell.Value;
+        }
+        return null;
+    }
+
+    public ExcelTableCell GetCell(int row, int column)
+    {
         if (cells.ContainsKey(row))
         {
-            Dictionary<int, object> rowDic = cells[row];
-            if (rowDic.ContainsKey(column))
+            if (cells[row].ContainsKey(column))
             {
-                return rowDic[column];
+                return cells[row][column];
             }
         }
         return null;
@@ -60,6 +77,30 @@ public class ExcelTable
     {
         NumberOfRows = Mathf.Max(row, NumberOfRows);
         NumberOfColumns = Mathf.Max(column, NumberOfColumns);
+    }
+
+    public void SetCellTypeRow(int rowIndex, ExcelTableCellType type)
+    {
+        for (int column = 1; column <= NumberOfColumns; column++)
+        {
+            ExcelTableCell cell = GetCell(rowIndex, column);
+            if (cell != null)
+            {
+                cell.Type = type;
+            }
+        }
+    }
+
+    public void SetCellTypeColumn(int columnIndex, ExcelTableCellType type)
+    {
+        for (int row = 1; row <= NumberOfRows; row++)
+        {
+            ExcelTableCell cell = GetCell(row, columnIndex);
+            if (cell != null)
+            {
+                cell.Type = type;
+            }
+        }
     }
 
     public void ShowLog() {
@@ -74,4 +115,6 @@ public class ExcelTable
         }
         Debug.Log(msg);
     }
+
+
 }
