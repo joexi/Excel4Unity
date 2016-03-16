@@ -4,6 +4,21 @@ using System;
 using System.Collections;
 
 public class EditorDrawHelper {
+    public static void DrawTableTab(Excel xls, ref int selectIndex)
+    {
+        GUILayout.BeginHorizontal();
+        {
+            for (int i = 0; i < xls.Tables.Count; i++)
+            {
+                if (GUILayout.Toggle(selectIndex == i, xls.Tables[i].TableName, EditorStyles.toolbarButton))
+                {
+                    selectIndex = i;
+                }
+            }
+        }
+        GUILayout.EndHorizontal();
+    }
+
     public static void DrawTable(ExcelTable table)
     {
         if (table != null)

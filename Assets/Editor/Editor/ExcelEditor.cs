@@ -6,6 +6,7 @@ public class ExcelEditor : EditorWindow {
 
     private Excel mExcel;
     private ExcelTable mTable;
+    private int selectIndex;
 
     [MenuItem("MyEditor/ShowXlsEditor")]
     static void ShowWindow()
@@ -24,17 +25,22 @@ public class ExcelEditor : EditorWindow {
     public void Show(Excel xls)
     {
         mExcel = xls;
-        mTable = mExcel.Tables[0];
-        mTable.SetCellTypeRow(1, ExcelTableCellType.Label);
-        mTable.SetCellTypeRow(2, ExcelTableCellType.Label);
-        mTable.SetCellTypeColumn(1, ExcelTableCellType.Label);
+        for (int i = 0; i < mExcel.Tables.Count; i++)
+        {
+            mExcel.Tables[i].SetCellTypeRow(1, ExcelTableCellType.Label);
+            mExcel.Tables[i].SetCellTypeRow(2, ExcelTableCellType.Label);
+            mExcel.Tables[i].SetCellTypeColumn(1, ExcelTableCellType.Label);
+        }
     }
 
     void OnGUI()
     {
-        if (mExcel != null && mTable != null)
+        if (mExcel != null)
         {
+            EditorDrawHelper.DrawTableTab(mExcel, ref selectIndex);
+            mTable = mExcel.Tables[selectIndex];
             EditorDrawHelper.DrawTable(mTable);
+            DrawButton();
         }
     }
 
@@ -50,10 +56,8 @@ public class ExcelEditor : EditorWindow {
         {
             string path = Application.dataPath + "/Test/Test3.xlsx";
             ExcelHelper.SaveExcel(mExcel, path);
+            EditorUtility.DisplayDialog("Save Success", path, "ok");
         });
-        
         EditorGUILayout.EndHorizontal();
     }
-
-
 }

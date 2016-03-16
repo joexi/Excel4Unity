@@ -33,7 +33,7 @@ public class ExcelTable
         }
     }
 
-    public void SetValue(int row, int column, object value)
+    public ExcelTableCell SetValue(int row, int column, object value)
     {
         if (!cells.ContainsKey(row))
         {
@@ -42,11 +42,13 @@ public class ExcelTable
         if (cells[row].ContainsKey(column))
         {
             cells[row][column].Value = value;
+            return cells[row][column];
         }
         else
         {
             ExcelTableCell cell = new ExcelTableCell(row, column, value);
             cells[row][column] = cell;
+            return cell;
         }
         CorrectSize(row, column);
     }
@@ -57,6 +59,10 @@ public class ExcelTable
         if (cell != null)
         {
             return cell.Value;
+        }
+        else
+        {
+            return SetValue(row, column, "").Value;
         }
         return null;
     }
