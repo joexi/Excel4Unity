@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 
 public class EditorDrawHelper {
+    
     public static void DrawTableTab(Excel xls, ref int selectIndex)
     {
         GUILayout.BeginHorizontal();
@@ -60,6 +61,17 @@ public class EditorDrawHelper {
                 case ExcelTableCellType.Label:
                     {
                         EditorGUILayout.LabelField(cell.Value.ToString(), GUILayout.MaxWidth(cell.width));
+                        break;
+                    }
+                case ExcelTableCellType.Popup:
+                    {
+                        int selectIndex = cell.ValueSelected.IndexOf(cell.Value);
+                        if (selectIndex < 0)
+                        {
+                            selectIndex = 0;
+                        }
+                        selectIndex = EditorGUILayout.Popup(selectIndex, cell.ValueSelected.ToArray(), GUILayout.MaxWidth(cell.width));
+                        cell.Value = cell.ValueSelected[selectIndex];
                         break;
                     }
                 default:

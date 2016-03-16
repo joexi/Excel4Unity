@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ExcelEditor : EditorWindow {
 
@@ -27,9 +28,10 @@ public class ExcelEditor : EditorWindow {
         mExcel = xls;
         for (int i = 0; i < mExcel.Tables.Count; i++)
         {
+            mExcel.Tables[i].SetCellTypeColumn(1, ExcelTableCellType.Label);
+            mExcel.Tables[i].SetCellTypeColumn(3, ExcelTableCellType.Popup, new List<string>(){"1","2"});
             mExcel.Tables[i].SetCellTypeRow(1, ExcelTableCellType.Label);
             mExcel.Tables[i].SetCellTypeRow(2, ExcelTableCellType.Label);
-            mExcel.Tables[i].SetCellTypeColumn(1, ExcelTableCellType.Label);
         }
     }
 
@@ -50,6 +52,7 @@ public class ExcelEditor : EditorWindow {
         EditorDrawHelper.DrawButton("Add", delegate()
         {
             mTable.NumberOfRows++;
+            Show(mExcel);
         });
 
         EditorDrawHelper.DrawButton("Save", delegate()

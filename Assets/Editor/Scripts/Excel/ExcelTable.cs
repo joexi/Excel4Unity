@@ -27,13 +27,13 @@ public class ExcelTable
         {
             for (int column = 1; column <= NumberOfColumns; column++)
             {
-                object value = sheet.Cells[row, column].Value;
+                string value = sheet.Cells[row, column].Value.ToString();
                 SetValue(row, column, value);
             }
         }
     }
 
-    public ExcelTableCell SetValue(int row, int column, object value)
+    public ExcelTableCell SetValue(int row, int column, string value)
     {
         if (!cells.ContainsKey(row))
         {
@@ -97,7 +97,7 @@ public class ExcelTable
         }
     }
 
-    public void SetCellTypeColumn(int columnIndex, ExcelTableCellType type)
+    public void SetCellTypeColumn(int columnIndex, ExcelTableCellType type, List<string> values = null)
     {
         for (int row = 1; row <= NumberOfRows; row++)
         {
@@ -105,6 +105,10 @@ public class ExcelTable
             if (cell != null)
             {
                 cell.Type = type;
+                if (values != null)
+                {
+                    cell.ValueSelected = values;
+                }
             }
         }
     }
