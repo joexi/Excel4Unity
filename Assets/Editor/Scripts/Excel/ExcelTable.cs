@@ -35,6 +35,7 @@ public class ExcelTable
 
     public ExcelTableCell SetValue(int row, int column, string value)
     {
+		CorrectSize(row, column);
         if (!cells.ContainsKey(row))
         {
             cells[row] = new Dictionary<int, ExcelTableCell>();
@@ -42,6 +43,7 @@ public class ExcelTable
         if (cells[row].ContainsKey(column))
         {
             cells[row][column].Value = value;
+
             return cells[row][column];
         }
         else
@@ -50,7 +52,6 @@ public class ExcelTable
             cells[row][column] = cell;
             return cell;
         }
-        CorrectSize(row, column);
     }
 
     public object GetValue(int row, int column)
