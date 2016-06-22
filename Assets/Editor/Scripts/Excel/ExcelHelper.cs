@@ -14,6 +14,14 @@ public class ExcelHelper
         return xls;
     }
 
+	public static Excel CreateExcel(string path) {
+		ExcelPackage ep = new ExcelPackage ();
+		ep.Workbook.Worksheets.Add ("sheet");
+		Excel xls = new Excel(ep.Workbook);
+		SaveExcel (xls, path);
+		return xls;
+	}
+
     public static void SaveExcel(Excel xls, string path)
     {
         FileInfo output = new FileInfo(path);
