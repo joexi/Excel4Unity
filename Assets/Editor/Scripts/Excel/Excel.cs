@@ -28,4 +28,11 @@ public class Excel
             Tables[i].ShowLog();
         }
     }
+
+    public void AddTable(string name) {
+        ExcelTable table = new ExcelTable();
+        table.TableName = name;
+        Tables.Add(table);
+    }
+
 }
