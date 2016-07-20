@@ -26,7 +26,7 @@ Excel for Unity
 
 ## Version
 
-Unity 5.2.0
+Unity 4.x or higher
 
 
 ### Update 2016-3-16
