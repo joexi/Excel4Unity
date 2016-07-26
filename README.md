@@ -8,6 +8,9 @@ Excel for Unity
 * Format Excel sheet into custom object (Excel,ExcelTable...)
 * Edit .xls/.xlsx file in Unity EditorWindow
 
+## Todo
+* .xls support in platform Windows
+
 ## How to use
 ``` c#
         string excelPath = Application.dataPath + "/Test/Test.xlsx";
