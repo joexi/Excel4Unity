@@ -31,7 +31,6 @@ Excel for Unity
 
 Unity 4.x or higher
 
-
 ### Update 2016-3-16
 * add new cell type "popup"
 
