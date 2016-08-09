@@ -10,6 +10,8 @@ Excel for Unity
 
 ## Todo
 * .xls support in platform Windows
+* xls to json convertion
+
 
 ## How to use
 ``` c#
