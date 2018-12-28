@@ -16,25 +16,25 @@ Excel for Unity
 ## How to use
 #### read & write
 ``` c#
-        string excelPath = Application.dataPath + "/Test/Test.xlsx";
-        string outputPath = Application.dataPath + "/Test/Test2.xlsx";
-        Excel xls = ExcelHelper.LoadExcel(excelPath);
-        xls.ShowLog();
+string excelPath = Application.dataPath + "/Test/Test.xlsx";
+string outputPath = Application.dataPath + "/Test/Test2.xlsx";
+Excel xls = ExcelHelper.LoadExcel(excelPath);
+xls.ShowLog();
 
-        xls.Tables[0].SetValue(1, 1, "???");
-        ExcelHelper.SaveExcel(xls, outputPath);
+xls.Tables[0].SetValue(1, 1, "???");
+ExcelHelper.SaveExcel(xls, outputPath);
 ```
 #### generate .cs file
 ``` c#
- string path = Application.dataPath + "/Test/Test4.xlsx";
-        Excel xls =  ExcelHelper.LoadExcel(path);
-        ExcelDeserializer ed = new ExcelDeserializer();
-        ed.FieldNameLine = 1;
-        ed.FieldTypeLine = 2;
-        ed.FieldValueLine = 3;
-        ed.IgnoreSymbol = "#";
-        ed.ModelPath = Application.dataPath + "/Editor/Excel4Unity/DataItem.txt";
-        ed.GenerateCS(xls.Tables[0]);
+string path = Application.dataPath + "/Test/Test4.xlsx";
+Excel xls =  ExcelHelper.LoadExcel(path);
+ExcelDeserializer ed = new ExcelDeserializer();
+ed.FieldNameLine = 1;
+ed.FieldTypeLine = 2;
+ed.FieldValueLine = 3;
+ed.IgnoreSymbol = "#";
+ed.ModelPath = Application.dataPath + "/Editor/Excel4Unity/DataItem.txt";
+ed.GenerateCS(xls.Tables[0]);
 ```
 ## Dependency
 
