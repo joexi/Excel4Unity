@@ -1,0 +1,15 @@
+using UnityEngine;
+using System.Collections;
+using LitJson;
+
+public class {0} : DataItem  {
+{1}
+    public override void Setup(JsonData data) {
+		base.Setup(data);
+{3}
+    }
+
+	public {2} () {
+	
+	}
+}

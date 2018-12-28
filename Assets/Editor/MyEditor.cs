@@ -4,11 +4,11 @@ using System.Collections;
 using OfficeOpenXml;
 using System.IO;
 using System.Collections.Generic;
-public class MyEditor : Editor
+public class Excel4Unity : Editor
 {
 
-    [MenuItem("MyEditor/test")] 
-    static void test()
+    [MenuItem("Excel4Unity/Test/ReadWrite")] 
+    static void ReadWrite()
     {
         Excel xls = new Excel();
         ExcelTable table = new ExcelTable();
@@ -23,16 +23,16 @@ public class MyEditor : Editor
         ExcelHelper.SaveExcel(xls, outputPath);
     }
 
-    [MenuItem("MyEditor/LoadXls")] 
-    static void LoadXls()
+    [MenuItem("Excel4Unity/Test/Read")] 
+    static void Read()
     {
         string path = Application.dataPath + "/Test/Test3.xlsx";
         Excel xls =  ExcelHelper.LoadExcel(path);
         xls.ShowLog();
     }
 
-    [MenuItem("MyEditor/WriteXls")] 
-    static void WriteXls()
+    [MenuItem("Excel4Unity/Test/Write")] 
+    static void Write()
     {
         Excel xls = new Excel();
         ExcelTable table = new ExcelTable();
@@ -44,5 +44,18 @@ public class MyEditor : Editor
         ExcelHelper.SaveExcel(xls, outputPath);
     }
 
+    [MenuItem("Excel4Unity/Test/GenerateModel")] 
+    static void GenerateModel()
+    {
+        string path = Application.dataPath + "/Test/Test4.xlsx";
+        Excel xls =  ExcelHelper.LoadExcel(path);
+        ExcelDeserializer ed = new ExcelDeserializer();
+        ed.FieldNameLine = 1;
+        ed.FieldTypeLine = 2;
+        ed.FieldValueLine = 3;
+        ed.IgnoreSymbol = "#";
+        ed.ModelPath = Application.dataPath + "/Editor/Excel4Unity/DataItem.txt";
+        ed.GenerateCS(xls.Tables[0]);
+    }
 
 }
