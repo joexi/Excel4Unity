@@ -7,6 +7,7 @@ Excel for Unity
 * Excel(.xls/.xlsx) Read/Write
 * Format Excel sheet into custom object (Excel,ExcelTable...)
 * Edit .xls/.xlsx file in Unity EditorWindow
+* Generate .cs model according to xls
 
 ## Todo
 * .xls support in platform Windows
