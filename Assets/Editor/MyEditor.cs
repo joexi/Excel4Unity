@@ -70,7 +70,7 @@ public class Excel4Unity : Editor
             string path = AssetDatabase.GetAssetPath(objs[i]);
             if (path.EndsWith(".xlsx"))
             {
-                ParseFile(path);
+                Excel4Unity.ParseFile(path);
             }
             else
             {
