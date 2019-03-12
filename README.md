@@ -35,25 +35,21 @@ ed.GenerateCS(xls.Tables[0]);
 ```
 #### convert to json
 ``` c#
-[MenuItem(@"Excel4Unity/Test/Excel2JSON")]
-    static void Excel2JSON()
+Object[] objs = Selection.objects;
+for (int i = 0; i < objs.Length; i++)
+{
+    string path = AssetDatabase.GetAssetPath(objs[i]);
+    if (path.EndsWith(".xlsx"))
     {
-        Object[] objs = Selection.objects;
-        for (int i = 0; i < objs.Length; i++)
-        {
-            string path = AssetDatabase.GetAssetPath(objs[i]);
-            if (path.EndsWith(".xlsx"))
-            {
-                Excel4Unity.ParseFile(path);
-            }
-            else
-            {
-                EditorUtility.DisplayDialog("提示", "暂不支持的文件格式" + path, "ok");
-                return;
-            }
-        }
-        AssetDatabase.Refresh();
+        Excel4Unity.ParseFile(path);
     }
+    else
+    {
+        EditorUtility.DisplayDialog("提示", "暂不支持的文件格式" + path, "ok");
+        return;
+    }
+}
+AssetDatabase.Refresh();
 ```
 ## Dependency
 
