@@ -4,15 +4,11 @@ Excel for Unity
 
 ## Provides
 
-* Excel(.xls/.xlsx) Read/Write
+* Excel(.xlsx) Read/Write
 * Format Excel sheet into custom object (Excel,ExcelTable...)
-* Edit .xls/.xlsx file in Unity EditorWindow
+* Edit .xlsx file in Unity EditorWindow
 * Generate .cs model according to .xls
-
-## Todo
-* .xls support in platform Windows
-* xls to json convertion
-
+* Conver .xlsx file to JSON format
 
 ## How to use
 #### read & write
@@ -36,6 +32,28 @@ ed.FieldValueLine = 3;
 ed.IgnoreSymbol = "#";
 ed.ModelPath = Application.dataPath + "/Editor/Excel4Unity/DataItem.txt";
 ed.GenerateCS(xls.Tables[0]);
+```
+#### convert to json
+``` c#
+[MenuItem(@"Excel4Unity/Test/Excel2JSON")]
+    static void Excel2JSON()
+    {
+        Object[] objs = Selection.objects;
+        for (int i = 0; i < objs.Length; i++)
+        {
+            string path = AssetDatabase.GetAssetPath(objs[i]);
+            if (path.EndsWith(".xlsx"))
+            {
+                Excel4Unity.ParseFile(path);
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("提示", "暂不支持的文件格式" + path, "ok");
+                return;
+            }
+        }
+        AssetDatabase.Refresh();
+    }
 ```
 ## Dependency
 
