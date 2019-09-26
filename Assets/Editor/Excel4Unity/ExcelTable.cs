@@ -78,7 +78,6 @@ public class ExcelTable
         {
             return SetValue(row, column, "").Value;
         }
-        return null;
     }
 
     public ExcelTableCell GetCell(int row, int column)
