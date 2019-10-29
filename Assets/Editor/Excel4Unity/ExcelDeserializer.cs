@@ -87,7 +87,7 @@ public class ExcelDeserializer {
 				}
 				else
 				{
-                    UnityEngine.Debug.LogError("generate .cs failed! " + propType + " not a valid type" + " " + "table:" + table.TableName);
+                    Debug.LogError("generate .cs failed! " + propType + " not a valid type" + " " + "table:" + table.TableName);
 					return false;
 				}
 			}
@@ -95,7 +95,7 @@ public class ExcelDeserializer {
 		catch (System.Exception e)
 		{
 			Debug.LogError(e);
-            UnityEngine.Debug.LogError("generate .cs failed: " + table.TableName + "!" + " " + "table:" + table.TableName);
+            Debug.LogError("generate .cs failed: " + table.TableName + "!" + " " + "table:" + table.TableName);
 			return false;
 		}
 		moudle = moudle.Replace("{0}", table.TableName + "Item");

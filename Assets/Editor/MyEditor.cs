@@ -206,17 +206,17 @@ public class Excel4Unity : Editor
             if (excel == null)
             {
                 //                EditorUtility.DisplayDialog("ERROR!", "open excel failed!","ok"); 
-                UnityEngine.Debug.LogError("open excel failed!");
+                Debug.LogError("open excel failed!");
+                Debug.LogError(e.StackTrace);
             }
             else
             {
                 string msg = "解析错误！ \n表:" + tableName + " \n字段:" + currentPropName + "  \n第" + tableRow + "行,第" + tableColumn + "列 \nvalue = " + v;
                 EditorUtility.DisplayDialog("error!", msg, "ok");
-                UnityEngine.Debug.LogError(e);
-                UnityEngine.Debug.LogError(e.StackTrace);
-                UnityEngine.Debug.LogError(msg);
+                Debug.LogError(e);
+                Debug.LogError(e.StackTrace);
+                Debug.LogError(msg);
             }
-            UnityEngine.Debug.LogError(e.StackTrace.ToString());
             return null;
         }
     }
